@@ -111,6 +111,15 @@ UNIVERSIDAD_COMPARACION = "CAMPINAS"
 file_path = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
 ```
 
+> 🏷️ **Ajuste de etiquetas en los gráficos (opcional):** Los notebooks 02 y 03 tienen una variable llamada `ajustes_etiquetas` que permite correr manualmente las etiquetas del gráfico si algunas se superponen. Por defecto está vacía `{}` y el gráfico funciona igual. Si necesitás ajustar alguna etiqueta, podés indicar cuántos puntos moverla en el eje x e y:
+> ```python
+> ajustes_etiquetas = {
+>     "Nombre del área": (0, -14),   # mueve la etiqueta 14 puntos hacia abajo
+>     "Otra área": (-30, +20),       # mueve 30 hacia la izquierda y 20 hacia arriba
+> }
+> ```
+> Esto es puramente estético y no afecta los datos.
+
 **En los notebooks 04, 04b, 05 y 05b:**
 ```python
 INFORME_1 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
@@ -118,7 +127,6 @@ INFORME_2 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_UNAL.xlsx"
 UNIVERSIDAD_REFERENCIA = "UBA"
 UNIVERSIDAD_2 = "CAMPINAS"
 UNIVERSIDAD_3 = "UNAL"
-MODIFICAR EL NUMERO DE LA TOTALIDAD DE LOS PAPERS DE CADA UNIVERSIDAD EN ESTOS NOTEBOOKS
 ```
 
 > 💡 Los informes que usan los notebooks del Flujo B los encontrás en tu escritorio, generados por el notebook 01.
@@ -140,9 +148,9 @@ scientific-output-comparator/
 ├── .gitignore
 │
 ├── data/
-│   ├── raw/               ← archivos reales de las bases de datos excel de Scopus (no estan subidas a este repo)
+│   ├── raw/               ← Poné acá tus archivos Excel de Scopus (no se suben al repo)
 │   │   └── README.md
-│   └── sample/            ← Datos de ejemplo con datos sintéticos para probar que funcionan los codigos
+│   └── sample/            ← Datos de ejemplo con datos sintéticos para probar
 │
 └── notebooks/
     ├── 01_generar_informe.ipynb
@@ -167,7 +175,3 @@ scientific-output-comparator/
 - TEC Monterrey
 - Pontificia Universidad Javeriana
 - SAO PAULO (Universidad de São Paulo)
-- UNSAM
-- LITORAL
-
-
