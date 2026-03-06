@@ -67,26 +67,30 @@ Abrí Jupyter Notebook y navegá hasta la carpeta del proyecto.
 
 ### Paso 4 — Ejecutar los notebooks
 
-El proyecto tiene dos flujos de análisis:
+El proyecto tiene dos flujos de análisis. Cada análisis tiene una versión de **gráfico** y una versión de **tabla Excel**, que podés usar de forma independiente según lo que necesites.
 
 #### Flujo A — Comparación entre dos universidades
 
-Los notebooks 01, 02 y 03 deben ejecutarse en orden:
+Primero ejecutá el notebook 01, que genera el informe base. Luego podés usar los notebooks 02 y 03 en cualquier orden:
 
-| Orden | Archivo | ¿Qué hace? |
-|-------|---------|------------|
-| 1 | `01_generar_informe.ipynb` | Compara dos universidades y genera el archivo Excel del informe en tu escritorio |
-| 2 | `02_graficar_fortalezas.ipynb` | Genera gráficos de fortalezas a partir del informe generado en el paso 1 |
-| 3 | `03_graficar_similitudes.ipynb` | Genera gráficos de similitudes a partir del informe generado en el paso 1 |
+| Notebook | ¿Qué genera? |
+|----------|--------------|
+| `01_generar_informe.ipynb` | Informe Excel comparativo entre dos universidades (insumo para el resto) |
+| `02_graficar_fortalezas.ipynb` | Gráfico de fortalezas y debilidades |
+| `02b_tabla_fortalezas.ipynb` | Tabla Excel con los mismos datos del gráfico de fortalezas |
+| `03_graficar_similitudes.ipynb` | Gráfico de áreas similares |
+| `03b_tabla_similitudes.ipynb` | Tabla Excel con los mismos datos del gráfico de similitudes |
 
 #### Flujo B — Comparación entre tres universidades
 
-Los notebooks 04 y 05 toman como insumo los informes Excel generados por el notebook 01. Por eso, antes de usarlos necesitás haber ejecutado el notebook 01 al menos dos veces (una por cada par de universidades a comparar).
+Antes de usar estos notebooks necesitás haber ejecutado el notebook 01 al menos dos veces (una por cada par de universidades a comparar):
 
-| Archivo | ¿Qué hace? |
-|---------|------------|
-| `04_comparacion_densidad_relativa.ipynb` | Compara la densidad relativa de producción (papers por cada 1000) entre tres universidades |
-| `05_comparacion_volumen_absoluto.ipynb` | Compara el volumen absoluto de papers entre tres universidades |
+| Notebook | ¿Qué genera? |
+|----------|--------------|
+| `04_comparacion_densidad_relativa.ipynb` | Gráfico de densidad relativa entre tres universidades |
+| `04b_tabla_densidad_relativa.ipynb` | Tabla Excel con los mismos datos del gráfico de densidad relativa |
+| `05_comparacion_volumen_absoluto.ipynb` | Gráfico de volumen absoluto entre tres universidades |
+| `05b_tabla_volumen_absoluto.ipynb` | Tabla Excel con los mismos datos del gráfico de volumen absoluto |
 
 ### Paso 5 — Configurar cada notebook
 
@@ -100,28 +104,29 @@ universidad1_file = r"data/raw/UBA.xlsx"
 universidad2_file = r"data/raw/CAMPINAS.xlsx"
 ```
 
-**En los notebooks 02 y 03:**
+**En los notebooks 02, 02b, 03 y 03b:**
 ```python
 UNIVERSIDAD_REFERENCIA = "UBA"
 UNIVERSIDAD_COMPARACION = "CAMPINAS"
 file_path = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
 ```
 
-**En los notebooks 04 y 05:**
+**En los notebooks 04, 04b, 05 y 05b:**
 ```python
 INFORME_1 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
 INFORME_2 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_UNAL.xlsx"
 UNIVERSIDAD_REFERENCIA = "UBA"
 UNIVERSIDAD_2 = "CAMPINAS"
 UNIVERSIDAD_3 = "UNAL"
+MODIFICAR EL NUMERO DE LA TOTALIDAD DE LOS PAPERS DE CADA UNIVERSIDAD EN ESTOS NOTEBOOKS
 ```
 
-> 💡 Los informes que usan los notebooks 04 y 05 los encontrás en tu escritorio, generados por el notebook 01.
+> 💡 Los informes que usan los notebooks del Flujo B los encontrás en tu escritorio, generados por el notebook 01.
 
 ### Paso 6 — ¿Dónde encuentro los resultados?
 
-- El **informe Excel** se guarda automáticamente en tu **escritorio** al ejecutar el notebook 01.
-- Los **gráficos** se guardan como `.png` en la carpeta desde donde ejecutás Jupyter y también se muestran en el notebook.
+- Los **informes Excel** (notebooks 01, 02b, 03b, 04b y 05b) se guardan automáticamente en tu **escritorio**.
+- Los **gráficos** (notebooks 02, 03, 04 y 05) se guardan como `.png` en la carpeta desde donde ejecutás Jupyter y también se muestran en el notebook.
 
 ---
 
@@ -135,16 +140,20 @@ scientific-output-comparator/
 ├── .gitignore
 │
 ├── data/
-│   ├── raw/               ← Poné acá tus archivos Excel de Scopus (no se suben al repo)
+│   ├── raw/               ← archivos reales de las bases de datos excel de Scopus (no estan subidas a este repo)
 │   │   └── README.md
-│   └── sample/            ← Datos de ejemplo con datos sintéticos para probar
+│   └── sample/            ← Datos de ejemplo con datos sintéticos para probar que funcionan los codigos
 │
 └── notebooks/
     ├── 01_generar_informe.ipynb
     ├── 02_graficar_fortalezas.ipynb
+    ├── 02b_tabla_fortalezas.ipynb
     ├── 03_graficar_similitudes.ipynb
+    ├── 03b_tabla_similitudes.ipynb
     ├── 04_comparacion_densidad_relativa.ipynb
-    └── 05_comparacion_volumen_absoluto.ipynb
+    ├── 04b_tabla_densidad_relativa.ipynb
+    ├── 05_comparacion_volumen_absoluto.ipynb
+    └── 05b_tabla_volumen_absoluto.ipynb
 ```
 
 ---
@@ -158,5 +167,7 @@ scientific-output-comparator/
 - TEC Monterrey
 - Pontificia Universidad Javeriana
 - SAO PAULO (Universidad de São Paulo)
+- UNSAM
+- LITORAL
 
----
+
