@@ -6,7 +6,7 @@ Herramienta desarrollada por la Oficina de Vinculación Tecnológica de la FCEN-
 
 ## ¿Qué hace este proyecto?
 
-A partir de bases de datos exportadas de Scopus, genera informes comparativos en Excel y gráficos de análisis entre dos universidades. Permite visualizar fortalezas, debilidades y similitudes en producción científica por área temática y subgrupo disciplinar.
+A partir de bases de datos exportadas de Scopus, genera informes comparativos en Excel y gráficos de análisis entre dos universidades. Permite visualizar fortalezas, debilidades y similitudes en producción científica por campos de estudio.
 
 ---
 
@@ -24,7 +24,27 @@ pip install -r requirements.txt
 
 ---
 
-## Cómo usar el proyecto
+## Datos de ejemplo
+
+Si querés probar el proyecto sin tener datos reales de Scopus, la carpeta `data/sample/` contiene archivos de ejemplo con datos sintéticos para las siguientes universidades:
+
+| Archivo | Universidad |
+|---|---|
+| `sample_UBA.xlsx` | Universidad de Buenos Aires |
+| `sample_CAMPINAS.xlsx` | Universidad de Campinas |
+| `sample_UNAL.xlsx` | Universidad Nacional de Colombia |
+| `sample_UCHILE.xlsx` | Universidad de Chile |
+| `sample_TEC.xlsx` | TEC Monterrey |
+| `sample_JAVERIANA.xlsx` | Pontificia Universidad Javeriana |
+| `sample_SAO_PAULO.xlsx` | Universidad de São Paulo |
+
+> ⚠️ Estos archivos contienen **datos inventados** y tienen como único propósito permitir probar el funcionamiento de los scripts. Los resultados no representan la producción científica real de ninguna universidad.
+
+Para usarlos, simplemente apuntá las rutas de los notebooks a estos archivos en lugar de los reales.
+
+---
+
+## Cómo usar el proyecto con datos reales
 
 ### Paso 1 — Descargar el repositorio
 
@@ -36,10 +56,10 @@ Los datos de cada universidad son archivos Excel exportados directamente desde [
 
 1. Buscá la producción de la universidad en Scopus
 2. Seleccioná todos los resultados
-3. Exportá como Excel (`.xlsx`)
+3. Exportá como CSV y pasalo a EXCEL (`.xlsx`)
 4. Guardá cada archivo en la carpeta `data/raw/` con un nombre claro, por ejemplo `UBA.xlsx`, `CAMPINAS.xlsx`, etc.
 
-> ⚠️ Los archivos de datos **no están incluidos** en el repositorio por restricciones de licencia de Scopus.
+> ⚠️ Los archivos de datos reales **no están incluidos** en el repositorio.
 
 ### Paso 3 — Abrir Jupyter Notebook
 
@@ -116,5 +136,4 @@ scientific-output-comparator/
 - SAO PAULO
 
 ---
-
 
