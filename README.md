@@ -6,7 +6,7 @@ Herramienta desarrollada por la Oficina de Vinculación Tecnológica de la FCEN-
 
 ## ¿Qué hace este proyecto?
 
-A partir de bases de datos exportadas de Scopus, genera informes comparativos en Excel y gráficos de análisis entre dos universidades. Permite visualizar fortalezas, debilidades y similitudes en producción científica por campos de estudio.
+A partir de bases de datos exportadas de Scopus, genera informes comparativos en Excel y gráficos de análisis entre universidades. Permite visualizar fortalezas, debilidades, similitudes y volumen de producción científica por campos de estudio, tanto en comparaciones de dos universidades como de tres.
 
 ---
 
@@ -56,7 +56,7 @@ Los datos de cada universidad son archivos Excel exportados directamente desde [
 
 1. Buscá la producción de la universidad en Scopus
 2. Seleccioná todos los resultados
-3. Exportá como CSV y pasalo a EXCEL (`.xlsx`)
+3. Exportá como CSV y pasalo a Excel (`.xlsx`)
 4. Guardá cada archivo en la carpeta `data/raw/` con un nombre claro, por ejemplo `UBA.xlsx`, `CAMPINAS.xlsx`, etc.
 
 > ⚠️ Los archivos de datos reales **no están incluidos** en el repositorio.
@@ -65,41 +65,63 @@ Los datos de cada universidad son archivos Excel exportados directamente desde [
 
 Abrí Jupyter Notebook y navegá hasta la carpeta del proyecto.
 
-### Paso 4 — Ejecutar los notebooks en orden
+### Paso 4 — Ejecutar los notebooks
 
-Los notebooks deben ejecutarse en este orden:
+El proyecto tiene dos flujos de análisis:
+
+#### Flujo A — Comparación entre dos universidades
+
+Los notebooks 01, 02 y 03 deben ejecutarse en orden:
 
 | Orden | Archivo | ¿Qué hace? |
 |-------|---------|------------|
-| 1 | `notebooks/01_generar_informe.ipynb` | Compara dos universidades y genera el archivo Excel del informe en tu escritorio |
-| 2 | `notebooks/02_graficar_fortalezas.ipynb` | Genera gráficos de fortalezas a partir del informe generado en el paso 1 |
-| 3 | `notebooks/03_graficar_similitudes.ipynb` | Genera gráficos de similitudes a partir del informe generado en el paso 1 |
+| 1 | `01_generar_informe.ipynb` | Compara dos universidades y genera el archivo Excel del informe en tu escritorio |
+| 2 | `02_graficar_fortalezas.ipynb` | Genera gráficos de fortalezas a partir del informe generado en el paso 1 |
+| 3 | `03_graficar_similitudes.ipynb` | Genera gráficos de similitudes a partir del informe generado en el paso 1 |
+
+#### Flujo B — Comparación entre tres universidades
+
+Los notebooks 04 y 05 toman como insumo los informes Excel generados por el notebook 01. Por eso, antes de usarlos necesitás haber ejecutado el notebook 01 al menos dos veces (una por cada par de universidades a comparar).
+
+| Archivo | ¿Qué hace? |
+|---------|------------|
+| `04_comparacion_densidad_relativa.ipynb` | Compara la densidad relativa de producción (papers por cada 1000) entre tres universidades |
+| `05_comparacion_volumen_absoluto.ipynb` | Compara el volumen absoluto de papers entre tres universidades |
 
 ### Paso 5 — Configurar cada notebook
 
 Al abrir cada notebook, vas a encontrar una sección de **CONFIGURACIÓN** al principio. Solo tenés que modificar esas variables:
 
-**En el notebook 1:**
+**En el notebook 01:**
 ```python
-universidad1_name = "UBA"           # Nombre de tu primera universidad
-universidad2_name = "CAMPINAS"      # Nombre de la segunda universidad
+universidad1_name = "UBA"
+universidad2_name = "CAMPINAS"
 universidad1_file = r"data/raw/UBA.xlsx"
 universidad2_file = r"data/raw/CAMPINAS.xlsx"
 ```
 
-**En los notebooks 2 y 3:**
+**En los notebooks 02 y 03:**
 ```python
 UNIVERSIDAD_REFERENCIA = "UBA"
 UNIVERSIDAD_COMPARACION = "CAMPINAS"
 file_path = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
 ```
 
-> 💡 La ruta `file_path` es la del archivo que se generó en el paso anterior. Lo encontrás en tu escritorio.
+**En los notebooks 04 y 05:**
+```python
+INFORME_1 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_CAMPINAS.xlsx"
+INFORME_2 = r"C:\Users\TU_USUARIO\Desktop\informe_comparativo_UBA_UNAL.xlsx"
+UNIVERSIDAD_REFERENCIA = "UBA"
+UNIVERSIDAD_2 = "CAMPINAS"
+UNIVERSIDAD_3 = "UNAL"
+```
+
+> 💡 Los informes que usan los notebooks 04 y 05 los encontrás en tu escritorio, generados por el notebook 01.
 
 ### Paso 6 — ¿Dónde encuentro los resultados?
 
-- El **informe Excel** se guarda automáticamente en tu **escritorio** al ejecutar el notebook 1.
-- Los **gráficos** se muestran en el notebook y también se pueden guardar desde ahí.
+- El **informe Excel** se guarda automáticamente en tu **escritorio** al ejecutar el notebook 01.
+- Los **gráficos** se guardan como `.png` en la carpeta desde donde ejecutás Jupyter y también se muestran en el notebook.
 
 ---
 
@@ -113,14 +135,16 @@ scientific-output-comparator/
 ├── .gitignore
 │
 ├── data/
-│   ├── raw/               ← Poné acá tus archivos Excel de Scopus
+│   ├── raw/               ← Poné acá tus archivos Excel de Scopus (no se suben al repo)
 │   │   └── README.md
-│   └── sample/            ← Datos de ejemplo para probar sin datos reales
+│   └── sample/            ← Datos de ejemplo con datos sintéticos para probar
 │
 └── notebooks/
     ├── 01_generar_informe.ipynb
     ├── 02_graficar_fortalezas.ipynb
-    └── 03_graficar_similitudes.ipynb
+    ├── 03_graficar_similitudes.ipynb
+    ├── 04_comparacion_densidad_relativa.ipynb
+    └── 05_comparacion_volumen_absoluto.ipynb
 ```
 
 ---
@@ -128,12 +152,11 @@ scientific-output-comparator/
 ## Universidades analizadas en este proyecto
 
 - UBA (Universidad de Buenos Aires)
-- CAMPINAS
+- CAMPINAS (Universidad de Campinas)
 - UNAL (Universidad Nacional de Colombia)
 - Universidad de Chile
 - TEC Monterrey
 - Pontificia Universidad Javeriana
-- SAO PAULO
+- SAO PAULO (Universidad de São Paulo)
 
 ---
-
