@@ -1,0 +1,24 @@
+# Datos de Scopus (no se suben por licencia)
+data/raw/*.xlsx
+data/raw/*.xls
+data/raw/*.csv
+
+# Informes generados (son outputs, no código)
+informe_comparativo_*.xlsx
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
