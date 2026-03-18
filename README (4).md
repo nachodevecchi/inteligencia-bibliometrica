@@ -53,7 +53,7 @@ El glosario oficial (`ext_list_Feb_2026.xlsx`) es el archivo publicado por Scopu
 
 | Archivo | Descripción | Dónde conseguirlo |
 |---|---|---|
-| `BASE NUEVA SIN FILAS VACIAS.xlsx` | Base de papers exportada de Scopus | Exportá desde Scopus |
+| `BASE DE PAPERS.xlsx` | Base de papers exportada de Scopus segun universidad | Exportá desde Scopus |
 | `ext_list_Feb_2026.xlsx` | Glosario oficial de Scopus con clasificaciones ASJC | Descargable desde el sitio de Scopus |
 
 ### Cómo usar el enriquecimiento
