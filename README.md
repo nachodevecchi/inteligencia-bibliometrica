@@ -53,7 +53,7 @@ El glosario oficial (`ext_list_Feb_2026.xlsx`) es el archivo publicado por Scopu
 
 | Archivo | Descripción | Dónde conseguirlo |
 |---|---|---|
-| `BASE NUEVA SIN FILAS VACIAS.xlsx` | Base de papers exportada de Scopus | Exportá desde Scopus |
+| `tu base de scopus.xlsx` | Base de papers exportada de Scopus | Exportá desde Scopus |
 | `ext_list_Feb_2026.xlsx` | Glosario oficial de Scopus con clasificaciones ASJC | Descargable desde el sitio de Scopus |
 
 ### Cómo usar el enriquecimiento
@@ -67,7 +67,7 @@ Abrí Jupyter Notebook y navegá hasta `enriquecimiento/`. Abrí el archivo `enr
 Al principio del notebook encontrás la sección de rutas. Editá las variables con las rutas a tus archivos:
 
 ```python
-PAPERS_PATH  = r"C:\Users\...\BASE NUEVA SIN FILAS VACIAS.xlsx"
+PAPERS_PATH  = r"C:\Users\...\tu base de scopus.xlsx"
 SCOPUS_PATH  = r"C:\Users\...\ext_list_Feb_2026.xlsx"
 OUTPUT_PATH  = r"C:\Users\...\BASE ENRIQUECIDA.xlsx"
 ```
@@ -246,26 +246,40 @@ Ejecutá la **Celda 1**. Instala automáticamente todas las librerías necesaria
 
 #### Paso 3 — Configurar (única celda a editar)
 
-La **Celda 2** es la única que necesitás modificar. Editá estas variables:
+La **Celda 2** permite algunas modificaciones. Editá estas variables:
 
 ```python
 RUTA_DATOS         = r"C:\ruta\a\tu\base_scopus.xlsx"
 RUTA_SALIDA        = r"C:\ruta\a\tu\Clusters_Descubiertos.xlsx"
 NOMBRE_INSTITUCION = "Mi Universidad"
 
-# Stopwords geográficas propias de tu institución
-# Agregá nombres de tu país, ciudad o región para que no sesguen los clústeres
-STOPWORDS_GEOGRAFICAS = {
-    # 'brazil', 'sao paulo', 'brasil',
-    # 'mexico', 'ciudad de mexico',
+La **Celda 3** presenta la variable "STOPWORDS_GENERALES" que permite cargar el texto de manera tal que no se tomen en cuenta ciertas palabras que generan ruido. A modo ilustrativo se dejan unas keyword que fueron ruido para nuestro analisis:
+
+STOPWORDS_GENERALES = {
+    # Relleno académico
+    'data', 'model', 'models', 'study', 'results', 'analysis', 'based',
+    'different', 'new', 'high', 'method', 'methods', 'properties', 'type',
+    'presented', 'proposed', 'use', 'time', 'number', 'structure', 'using',
+    'show', 'showed', 'used', 'non', 'two', 'three', 'also', 'well',
+    'present', 'work', 'approach', 'paper', 'review', 'found', 'provide',
+    'including', 'large', 'small', 'low', 'effect', 'effects', 'role',
+    'function', 'functions', 'form', 'forms', 'related', 'observed',
+    'experimental', 'theoretical', 'numerical', 'computational',
+    'response', 'state', 'states', 'factor',
+    # Biología genérica
+    'human', 'animal', 'activity', 'expression', 'cell', 'cells',
+    'protein', 'proteins', 'gene', 'disease', 'acid', 'binding', 'molecular',
+    # Boilerplate de editoriales
+    'elsevier', 'reserved', 'rights reserved', 'author', 'article',
+    'rights', 'copyright', 'formula', 'formula presented',
+    'american physical', 'physical society', 'american physical society',
+    'american', 'society', 'editorial', 'springer', 'wiley', 'published',
+    # Números y romanos frecuentes
+    '13', '19', 'ii', 'iii', 'iv',
 }
 ```
 
-Los nombres de columna por defecto son los estándar de Scopus (`Title`, `Abstract`, `Author Keywords`, `Index Keywords`). Si tu archivo usa nombres distintos, también podés ajustarlos en esa misma celda.
-
 #### Paso 4 — Ejecutar las celdas 3 a 6
-
-Estas celdas corren automáticamente sin intervención:
 
 | Celda | Qué hace | Tiempo estimado |
 |---|---|---|
